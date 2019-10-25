@@ -21,7 +21,7 @@ export const routerOptions = {
     component: _d6324b1c,
     name: "inspire"
   }, {
-    path: "/",
+    path: "/main",
     component: _104ec1d1,
     name: "main"
   }, {
