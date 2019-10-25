@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -59,7 +59,7 @@
       </v-btn>
     </v-app-bar>
     <v-content>
-      <v-container>
+      <v-container fill-height>
         <nuxt />
       </v-container>
     </v-content>
@@ -98,14 +98,19 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
+          icon: 'mdi-face',
+          title: 'Profile',
+          to: '/profile'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+        icon: 'mdi-plus',
+          title: 'Add section',
+          to: '/add'
+        },
+        {
+          icon: 'mdi-map',
+          title: 'Map',
+          to: '/map'
         }
       ],
       miniVariant: false,
