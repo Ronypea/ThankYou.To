@@ -52,10 +52,11 @@
       <v-menu>
         <template v-slot:activator="{ on }">
           <v-btn
+            id="name"
             color="#e12729"
             v-on="on"
           >
-            Dropdown Menu
+            {{ fullName }}
           </v-btn>
         </template>
         <v-list>
@@ -107,8 +108,16 @@ export default {
       drawer: false,
       fixed: false,
       dropdownItems: [
-        'Change name',
-        'Log out'
+        {
+          title: 'Change name',
+          onClick: () => {
+            document.getElementById('name').tagNam
+          }
+        },
+        {
+          title: 'Change name',
+          onClick: 'xd'
+        }
       ],
       items: [
         {
@@ -132,8 +141,18 @@ export default {
       rightDrawer: false,
     }
   },
+  middleware: 'getUserData',
+  computed: {
+    fullName() {
+      const userData = this.$store.state.user.data;
+
+      console.log(userData);
+
+      return `${userData.nameFirst} ${userData.nameLast}`;
+    }
+  },
   created() {
-    if (!this.$store.state.user.data.token) {
+    if (!localStorage.getItem('token')) {
       this.$router.push('/main');
     }
   }

@@ -180,9 +180,6 @@ export default {
       const response = api.getSections()
     }
   },
-  mounted() {
-    // this.fetchSections()
-  }
 }
 </script>
 

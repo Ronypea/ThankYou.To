@@ -68,7 +68,7 @@ export default class Api {
 
     if (res.token) {
       this.$axios.setToken(res.token);
-      localStorage.setItem("token", res.token);
+
       this.$store.commit('user/ADD_AUTH_DATA', res);
 
       this.$router.replace("/");
@@ -82,7 +82,9 @@ export default class Api {
 
     if (res.token) {
       this.$axios.setToken(res.token);
-      localStorage.setItem("token", res.token);
+
+      this.$store.commit('user/ADD_AUTH_DATA', res);
+
       this.$router.replace("/");
     }
 
@@ -100,5 +102,11 @@ export default class Api {
   async createSection(params) {
     var formData = this.jsonToForm(params);
     return await this.post(`sections/create`, formData)
+  }
+
+  async getUserData(renewToken) {
+    const newData = await this.post(`public/auth/renew`, {renewToken});
+    this.$store.commit('user/ADD_AUTH_DATA', newData);
+    return newData;
   }
 }
