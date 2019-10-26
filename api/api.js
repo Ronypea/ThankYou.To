@@ -64,9 +64,9 @@ export default class Api {
   }
 
   async login(email, password) {
-    var res = await this.post(`public/auth/login`, {email, password});
+    var res = await this.post(`public/auth/login`, {email, password, agent:'place'});
 
-    if (res.token) {
+      if (res.token) {
       this.$axios.setToken(res.token);
       localStorage.setItem("token", res.token);
       this.$router.replace("/");
@@ -78,7 +78,7 @@ export default class Api {
   }
 
   async register (email, password, nameFirst, nameLast) {
-    var res = await this.post(`public/auth/register`, {email, password, nameFirst, nameLast});
+    var res = await this.post(`public/auth/register`, {email, password, nameFirst, nameLast, agent:'place'});
 
     if (res.token) {
       this.$axios.setToken(res.token);
