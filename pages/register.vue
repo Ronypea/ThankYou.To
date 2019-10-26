@@ -44,7 +44,8 @@
 
 <script>
     export default {
-        name: "register",
+      auth: false ,
+      name: "register",
       layout: "main_page",
       data() {
         return {
