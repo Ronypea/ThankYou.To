@@ -38,7 +38,6 @@
                   <v-list-item
                     v-for="participant in participants"
                     :key="participant._id"
-                    @click=""
                   >
                     <v-list-item-content>
                       <v-list-item-title style="padding-left: 10px">{{ participant.id }}. {{ participant.name }} {{ participant.surname }}</v-list-item-title>

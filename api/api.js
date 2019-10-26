@@ -77,8 +77,8 @@ export default class Api {
     return res;
   }
 
-  async register (email, password, first_name, second_name) {
-    var res = await this.post(`public/auth/register`, {email, password, first_name, second_name});
+  async register (email, password, nameFirst, nameLast) {
+    var res = await this.post(`public/auth/register`, {email, password, nameFirst, nameLast});
 
     if (res.token) {
       this.$axios.setToken(res.token);
