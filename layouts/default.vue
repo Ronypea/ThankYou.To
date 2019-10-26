@@ -61,10 +61,10 @@
         </template>
         <v-list>
           <v-list-item
-            v-for="(item, index) in items"
+            v-for="(item, index) in dropdownItems"
             :key="index"
           >
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title>{{ item }}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -107,10 +107,14 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
+      dropdownItems: [
+        'Change name',
+        'Log out'
+      ],
       items: [
         {
-          icon: 'mdi-face',
-          title: 'Profile',
+          icon: 'mdi-file-document-box',
+          title: 'Sections',
           to: '/profile'
         },
         {
