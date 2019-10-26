@@ -28,19 +28,19 @@
           <v-checkbox label="Remember me" style="margin-top: 0"></v-checkbox>
           <v-btn
             block
-            color="primary"
+            color="#1b557a"
             @click="send"
           >SIGN IN</v-btn>
           <v-row>
             <v-col>
               <a href="">Forgot password?</a>
             </v-col>
-            <v-col>
+            <v-col style="color: #1b557a">
               <a @click="() => this.$router.push('/register', true)" style="float: right">Don't have an account? Sign Up</a>
             </v-col>
           </v-row>
         </v-form>
-        <span style="color: rgba(0, 0, 0, 0.54); font-size: 0.875rem; margin-top: 30px">Copyright © Your Website 2019</span>
+        <span style="color: #1b557a; font-size: 0.875rem; margin-top: 30px">Copyright © Your Website 2019</span>
       </div>
     </v-col>
   </v-row>
@@ -82,7 +82,7 @@ export default {
 }
 
 .icon {
-  background-color: rgb(220, 0, 78);
+  background-color: #e12729;
   width: 40px;
   height: 40px;
   margin: 8px;

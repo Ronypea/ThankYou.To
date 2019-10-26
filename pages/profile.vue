@@ -25,22 +25,22 @@
                 size="17"
               ></v-rating>
               <v-list-item-subtitle>
-                <v-icon> mdi-map-marker</v-icon>
+                <v-icon color="#1b557a"> mdi-map-marker</v-icon>
                 <b>Place</b> : {{ player.baseLocation }}
               </v-list-item-subtitle>
               <v-list-item-subtitle>
-                <v-icon> mdi-currency-usd</v-icon>
+                <v-icon color="#1b557a"> mdi-currency-usd</v-icon>
                 <b>Price by hour</b>: {{ player.hourPrice }}
               </v-list-item-subtitle>
               <v-list-item-subtitle>
-                <v-icon> mdi-music</v-icon>
+                <v-icon color="#1b557a"> mdi-music</v-icon>
                 <span v-for="(genre, index) in player.genres" :key="index"> <span> {{ genre}}</span> <span
                   v-if="index+1 < player.genres.length">, </span></span>
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
           <v-card-actions>
-            <v-btn text @click.stop="dialog = true">Make order</v-btn>
+            <v-btn text @click.stop="dialog = true" style="color:#1b557a">Make order</v-btn>
           </v-card-actions>
 
           <v-dialog
@@ -152,7 +152,7 @@ export default {
           userId: 'Ishome',
           baseLocation: 'Saint Petersburg, Vasilevsii Island',
           genres: ['rep', 'rock'],
-          photo: 'https://akm-img-a-in.tosshub.com/indiatoday/images/story/201901/RTX5IF2A.jpeg?oY3_4Pu8KcjbYXpaZQ6Ca9l1iv_fechi',
+          photo: 'https://cdn1.img.crimea.ria.ru/images/111612/19/1116121926.jpg',
           rating: '5',
           balance: '123456789',
           hourPrice: '1000 rub',
@@ -184,7 +184,4 @@ export default {
 </script>
 
 <style scoped>
-  .item + .item:before {
-    content: ", "
-  }
 </style>
