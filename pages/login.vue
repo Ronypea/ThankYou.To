@@ -41,6 +41,13 @@ export default {
       password: "",
       progress: false
     };
+  },
+  methods: {
+    send() {
+      this.progress = true;
+      //implement auth logic here
+      this.progress = false;
+    }
   }
 };
 </script>
