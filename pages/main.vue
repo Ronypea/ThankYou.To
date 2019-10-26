@@ -12,7 +12,7 @@
       </div>
       <v-btn
         @click="$router.push('/login')"
-        color="#875cff"
+        color="#1b557a"
         width="150"
         height="48"
         class="mt-4"
@@ -64,11 +64,12 @@
     font-family: 'Oswald', cursive;
     font-weight: bold;
     font-size: 70px;
-    color: #875cff;
+    color: #e12729;
   }
   #header2 {
     text-align: center;
     font-family: 'Open Sans', cursive;
+    color: #212121;
   }
   #header3 {
     text-align: center;
@@ -76,6 +77,7 @@
     margin-left: 80px;
     margin-bottom: 15px;
     font-family: 'Open Sans', cursive;
+    color: #212121;
   }
 
 </style>
