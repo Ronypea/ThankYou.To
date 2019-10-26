@@ -14,11 +14,10 @@ export const state = () => ({
 export const mutations = {
   ADD_AUTH_DATA: (state, { token, renewToken, user }) => {
     state.data = {...state.data, token, renewToken, ...user};
+    localStorage.setItem('token', token);
+    localStorage.setItem('renewToken', renewToken);
   },
   TEST: (state, name) => {
     state.name = name;
-  },
-  toggle (state, todo) {
-    todo.done = !todo.done
   }
 }

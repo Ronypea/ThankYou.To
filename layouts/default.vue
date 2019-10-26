@@ -52,11 +52,12 @@
       <v-menu>
         <template v-slot:activator="{ on }">
           <v-btn
+            id="name"
             color="primary"
             dark
             v-on="on"
           >
-            Dropdown
+            {{ fullName }}
           </v-btn>
         </template>
         <v-list>
@@ -108,8 +109,16 @@ export default {
       drawer: false,
       fixed: false,
       dropdownItems: [
-        'Change name',
-        'Log out'
+        {
+          title: 'Change name',
+          onClick: () => {
+            document.getElementById('name').tagNam
+          }
+        },
+        {
+          title: 'Change name',
+          onClick: 'xd'
+        }
       ],
       items: [
         {
@@ -134,8 +143,18 @@ export default {
       title: 'Vuetify.js'
     }
   },
+  middleware: 'getUserData',
+  computed: {
+    fullName() {
+      const userData = this.$store.state.user.data;
+
+      console.log(userData);
+
+      return `${userData.nameFirst} ${userData.nameLast}`;
+    }
+  },
   created() {
-    if (!this.$store.state.user.data.token) {
+    if (!localStorage.getItem('token')) {
       this.$router.push('/main');
     }
   }
