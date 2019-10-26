@@ -3,7 +3,8 @@
       <v-row>
         <v-col xs="12" sm="6" md="6" lg="4" v-for="section of sections"
              v-blind="section._id"
-             class="section-item">
+             class="section-item"
+             :key="section._id">
           <v-card class="mx-auto"
                   max-width="400">
             <v-img

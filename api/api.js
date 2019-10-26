@@ -1,4 +1,4 @@
-const baseUrl = "https://hobbit.itis.team/"
+const baseUrl = "https://api.thankyou.to/api/v1"
 
 export default class Api {
   constructor(ctx) {
@@ -8,7 +8,7 @@ export default class Api {
   }
 
   async get(url, header = null) {
-    var res = await this.$axios('${baseUrl}/${url}').catch(error => {
+    var res = await this.$axios(`${baseUrl}/${url}`).catch(error => {
       return error.response.data;
     });
     if (res.code) {
@@ -21,7 +21,7 @@ export default class Api {
           this.$router.push("/login", true);
           break;
         default:
-          this.$store.commit("error/show", 'Ошибка:${res.message}');
+          this.$store.commit("error/show", `Ошибка:${res.message}`);
           break;
       }
     }
@@ -29,7 +29,7 @@ export default class Api {
   }
 
   async post(url, data, header = null) {
-    var res = await this.$axios.post('${baseUrl}/${url}', data).catch(error => {
+    var res = await this.$axios.post(`${baseUrl}/${url}`, data).catch(error => {
       return error.response.data;
     });
     if (res.code) {
@@ -42,7 +42,7 @@ export default class Api {
           this.$router.push("/login", true);
           break;
         default:
-          this.$store.commit("error/show", 'Ошибка: ${res.message}');
+          this.$store.commit("error/show", `Ошибка: ${res.message}`);
           break;
       }
       return res;
@@ -63,27 +63,30 @@ export default class Api {
     return await this.post(`auth/send`, {email});
   }
 
-  async verify(email, password) {
-    var res = await this.post(`auth/verify`, {email, password});
-    if (!res.password) {
-      this.$axios.setToken(res);
-      localStorage.setItem("token", res);
+  async login(email, password) {
+    var res = await this.post(`public/auth/login`, {email, password});
+
+    if (res.token) {
+      this.$axios.setToken(res.token);
+      localStorage.setItem("token", res.token);
       this.$router.replace("/");
     }
+
+    console.log(res);
+
     return res;
   }
 
   async me() {
-    return await this.get('user/me');
+    return await this.get(`user/me`);
   }
 
   async getSections() {
-    return await this.get('sections/get')
+    return await this.get(`sections/get`)
   }
 
   async createSection(params) {
     var formData = this.jsonToForm(params);
-    return await this.post('sections/create', formData)
+    return await this.post(`sections/create`, formData)
   }
 }
-cd 

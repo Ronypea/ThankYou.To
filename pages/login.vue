@@ -45,7 +45,9 @@ export default {
   methods: {
     send() {
       this.progress = true;
-      //implement auth logic here
+
+      this.$api.login(this.email, this.password);
+
       this.progress = false;
     }
   }
