@@ -169,6 +169,9 @@ export default {
           hourPrice: '9000 rub',
           qr: '12345678'
         }
+      ],
+      participants: [
+
       ]
     }
   },
