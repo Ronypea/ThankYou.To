@@ -6,14 +6,14 @@ import {
   globalHandleError
 } from './utils'
 
-import NuxtError from '..\\layouts\\error.vue'
+import NuxtError from '../layouts/error.vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
-import '..\\node_modules\\vuetify\\dist\\vuetify.css'
+import '../node_modules/vuetify/dist/vuetify.css'
 
-import _6f6c098b from '..\\layouts\\default.vue'
-import _e1bf6bc2 from '..\\layouts\\main_page.vue'
+import _6f6c098b from '../layouts/default.vue'
+import _e1bf6bc2 from '../layouts/main_page.vue'
 
 const layouts = { "_default": _6f6c098b,"_main_page": _e1bf6bc2 }
 
