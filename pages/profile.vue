@@ -16,9 +16,9 @@
             <v-list-item three-line>
               <v-list-item-content>
                 <div class="overline mb-4"> {{section.category }}</div>
-                <v-list-item-subtitle> <b>Date</b>: {{ section.date }}, <b>Time</b>: {{ section.time }}</v-list-item-subtitle>
-                <v-list-item-subtitle> <b>Place</b> : {{ section.place }}</v-list-item-subtitle>
-                <v-list-item-subtitle> <b>Description</b>: {{ section.description }}</v-list-item-subtitle>
+                <v-list-item-subtitle> <v-icon> mdi-alarm </v-icon>  <b>Date</b>: {{ section.date }} {{ section.time }}</v-list-item-subtitle>
+                <v-list-item-subtitle> <v-icon> mdi-map-marker </v-icon> <b>Place</b> : {{ section.place }}</v-list-item-subtitle>
+                <v-list-item-subtitle> <v-icon> mdi-border-color </v-icon> <b>Description</b>: {{ section.description }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
