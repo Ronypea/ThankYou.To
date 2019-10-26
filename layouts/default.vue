@@ -133,6 +133,11 @@ export default {
       rightDrawer: false,
       title: 'Vuetify.js'
     }
+  },
+  created() {
+    if (!this.$store.state.user.data.token) {
+      this.$router.push('/main');
+    }
   }
 }
 </script>

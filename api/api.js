@@ -66,13 +66,13 @@ export default class Api {
   async login(email, password) {
     var res = await this.post(`public/auth/login`, {email, password, agent:'place'});
 
-      if (res.token) {
+    if (res.token) {
       this.$axios.setToken(res.token);
       localStorage.setItem("token", res.token);
+      this.$store.commit('user/ADD_AUTH_DATA', res);
+
       this.$router.replace("/");
     }
-
-    console.log(res);
 
     return res;
   }
@@ -85,8 +85,6 @@ export default class Api {
       localStorage.setItem("token", res.token);
       this.$router.replace("/");
     }
-
-    console.log(res);
 
     return res;
   }

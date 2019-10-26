@@ -152,10 +152,7 @@ export default {
   },
   methods: {
     async fetchSections() {
-      console.log('aaaaaaaaaaaaaa')
       const response = api.getSections()
-      console.log(response)
-      console.log('aaaaaaaaaaaaaa')
     }
   },
   mounted() {
