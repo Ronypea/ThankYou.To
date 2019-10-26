@@ -9,7 +9,7 @@
     />
     </v-flex>
     <v-layout column justify-center align-center class="text_layout">
-      <div class="text_layout--title mb-4" id="header"> HobbIT</div>
+      <div class="text_layout--title mb-4" id="header"> ThankYou.To</div>
       <div class="mt-4 text_layout--subtitle" id="header2"> App to make people's & hobbies meet</div>
       <v-btn
         @click="$router.push('/login')"

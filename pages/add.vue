@@ -65,6 +65,15 @@ export default {
   // components:[Map],
   data() {
     return {
+      place: [
+        {id: '1',
+        name: 'LoveNIka',
+        type:' bar',
+        location: 'Adress',
+        genres: ['Pop','djazz'],
+        photo: 'url',
+        rating: '4.2'}
+      ],
       max: 100,
       min: 0,
       slider: 0,
