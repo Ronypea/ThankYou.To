@@ -1,6 +1,6 @@
 <template>
-  <v-layout fill-height align-center justify-center>
-    <v-card width="500px">
+  <v-layout fill-height align-center justify-center class='background'>
+    <v-card elevation="24" width="500px">
       <v-card-title flat align-center > Регистрация </v-card-title>
       <v-divider></v-divider>
       <v-card-text>
@@ -73,5 +73,9 @@
 </script>
 
 <style scoped>
+  .background {
+    background-size: cover;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(https://images.unsplash.com/photo-1513829596324-4bb2800c5efb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);
+  }
 
 </style>
