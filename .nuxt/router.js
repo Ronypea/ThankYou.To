@@ -7,6 +7,7 @@ const _3562b68e = () => interopDefault(import('..\\pages\\add.vue' /* webpackChu
 const _d6324b1c = () => interopDefault(import('..\\pages\\inspire.vue' /* webpackChunkName: "pages_inspire" */))
 const _b6b410fe = () => interopDefault(import('..\\pages\\login.vue' /* webpackChunkName: "pages_login" */))
 const _104ec1d1 = () => interopDefault(import('..\\pages\\main.vue' /* webpackChunkName: "pages_main" */))
+const _9d6547cc = () => interopDefault(import('..\\pages\\musicians.vue' /* webpackChunkName: "pages_musicians" */))
 const _0e32f1c1 = () => interopDefault(import('..\\pages\\profile.vue' /* webpackChunkName: "pages_profile" */))
 const _0c0e65bb = () => interopDefault(import('..\\pages\\register.vue' /* webpackChunkName: "pages_register" */))
 
@@ -35,6 +36,10 @@ export const routerOptions = {
     path: "/main",
     component: _104ec1d1,
     name: "main"
+  }, {
+    path: "/musicians",
+    component: _9d6547cc,
+    name: "musicians"
   }, {
     path: "/profile",
     component: _0e32f1c1,

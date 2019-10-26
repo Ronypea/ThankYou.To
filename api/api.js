@@ -95,14 +95,6 @@ export default class Api {
     return await this.get(`user/me`);
   }
 
-  async getSections() {
-    return await this.get(`sections/get`)
-  }
-
-  async createSection(params) {
-    var formData = this.jsonToForm(params);
-    return await this.post(`sections/create`, formData)
-  }
 
   async getUserData(renewToken) {
     const newData = await this.post(`public/auth/renew`, {renewToken});
