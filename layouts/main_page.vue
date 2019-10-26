@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-content fill-height>
-      <v-container fill-height>
-        <nuxt />
-      </v-container>
-    </v-content>
+    <nuxt />
   </v-app>
 </template>
 

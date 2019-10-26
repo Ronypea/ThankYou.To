@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="space-around" align="center">
+  <v-row justify="space-around" align="center" style="height: 100vh">
     <v-col cols="7">
       <v-form>
         <v-row>
