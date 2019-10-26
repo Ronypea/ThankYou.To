@@ -114,12 +114,12 @@ export default {
       items: [
         {
           icon: 'mdi-file-document-box',
-          title: 'Sections',
+          title: 'Musicians',
           to: '/profile'
         },
         {
         icon: 'mdi-plus',
-          title: 'Add section',
+          title: 'Management',
           to: '/add'
         },
         {

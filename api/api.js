@@ -1,4 +1,4 @@
-const baseUrl = "https://api.thankyou.to/api/v1"
+const baseUrl = "https://api.thankyou.to"
 
 export default class Api {
   constructor(ctx) {

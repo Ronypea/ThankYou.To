@@ -1,31 +1,46 @@
 <template>
-  <v-row fill-height align-center justify-center class="row">
-    <v-col sm=4 md=7 xs="false" class="image"></v-col>
-    <v-col sm=8 md=5 xs=12 class="login">
+  <v-row fill-height align-center justify-center>
+    <v-col :xs="false" sm=4 md=7 class="image"></v-col>
+    <v-col xs=12 sm=8 md=5 class="login" elevation=6>
       <div class="flex">
         <div class="icon">
-          <v-icon>mdi-lock</v-icon>
+          <v-icon color="white">mdi-lock</v-icon>
         </div>
-        <v-text-field append-icon="mdi-account" outlined label="Email" v-model="email"></v-text-field>
-        <v-text-field
-          @keyup.enter="send()"
-          outlined
-          append-icon="mdi-lock"
-          label="Password"
-          type="password"
-          v-model="password"
-        ></v-text-field>
-        <v-card-actions>
-          <v-layout class="ml-2 mr-2 pb-2" row align-center justify-center v-if="progress">
-            <v-progress-linear indeterminate></v-progress-linear>
-          </v-layout>
-          <v-layout v-else>
-            <v-btn @click="send()" :disabled="password.length<6" block text>
-              Войти
-              <v-icon small class="pl-2">mdi-chevron-right</v-icon>
-            </v-btn>
-          </v-layout>
-        </v-card-actions>
+        <v-card-title style="font-size: 1.5em; padding: 0">Sign in</v-card-title>
+        <v-form class="form">
+          <v-text-field
+            hide-details
+            class="input"
+            append-icon="mdi-account"
+            outlined label="Email"
+            v-model="email"
+          ></v-text-field>
+          <v-text-field
+            hide-details
+            class="input"
+            @keyup.enter="send()"
+            outlined
+            append-icon="mdi-lock"
+            label="Password"
+            type="password"
+            v-model="password"
+          ></v-text-field>
+          <v-checkbox label="Remember me" style="margin-top: 0"></v-checkbox>
+          <v-btn
+            block
+            color="primary"
+            @click="send"
+          >SIGN IN</v-btn>
+          <v-row>
+            <v-col>
+              <a href="">Forgot password?</a>
+            </v-col>
+            <v-col>
+              <a @click="() => this.$router.push('/register', true)" style="float: right">Don't have an account? Sign Up</a>
+            </v-col>
+          </v-row>
+        </v-form>
+        <span style="color: rgba(0, 0, 0, 0.54); font-size: 0.875rem; margin-top: 30px">Copyright © Your Website 2019</span>
       </div>
     </v-col>
   </v-row>
@@ -73,7 +88,7 @@ export default {
   margin: 8px;
   border-radius: 50%;
   padding: 8px;
-  margin: 0px auto;
+  margin: 8px;
 }
 
 .login {
@@ -84,5 +99,26 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 32px;
+}
+
+.form {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.input {
+  margin: 24px 0 8px !important;
+}
+
+a {
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 600px) {
+  .image {
+    display: none;
+  }
 }
 </style>
