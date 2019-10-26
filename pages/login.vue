@@ -1,21 +1,20 @@
 <template>
-  <div id="login-page">
-    <v-layout fill-height align-center justify-center>
-      <v-card width="300px">
-        <v-toolbar flat color="primary" dark class="title">Авторизация</v-toolbar>
-        <v-card-text>
-          <v-layout column>
-            <v-text-field append-icon="mdi-account" outlined label="Email" v-model="email"></v-text-field>
-            <v-text-field
-              @keyup.enter="send()"
-              outlined
-              append-icon="mdi-lock"
-              label="Password"
-              type="password"
-              v-model="password"
-            ></v-text-field>
-          </v-layout>
-        </v-card-text>
+  <v-row fill-height align-center justify-center class="row">
+    <v-col sm=4 md=7 xs="false" class="image"></v-col>
+    <v-col sm=8 md=5 xs=12 class="login">
+      <div class="flex">
+        <div class="icon">
+          <v-icon>mdi-lock</v-icon>
+        </div>
+        <v-text-field append-icon="mdi-account" outlined label="Email" v-model="email"></v-text-field>
+        <v-text-field
+          @keyup.enter="send()"
+          outlined
+          append-icon="mdi-lock"
+          label="Password"
+          type="password"
+          v-model="password"
+        ></v-text-field>
         <v-card-actions>
           <v-layout class="ml-2 mr-2 pb-2" row align-center justify-center v-if="progress">
             <v-progress-linear indeterminate></v-progress-linear>
@@ -27,9 +26,9 @@
             </v-btn>
           </v-layout>
         </v-card-actions>
-      </v-card>
-    </v-layout>
-  </div>
+      </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -58,5 +57,32 @@ export default {
 #login-page {
   height: 100%;
   width: 100%;
+}
+
+.image {
+    background-image: url(https://source.unsplash.com/random);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.icon {
+  background-color: rgb(220, 0, 78);
+  width: 40px;
+  height: 40px;
+  margin: 8px;
+  border-radius: 50%;
+  padding: 8px;
+  margin: 0px auto;
+}
+
+.login {
+  padding: 64px 0;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 </style>
