@@ -133,6 +133,73 @@ export default {
       rightDrawer: false,
       title: 'Vuetify.js'
     }
+  },
+  mounted() {
+    if (!window.FBINITED) {
+      var firebaseConfig = {
+        apiKey: "AIzaSyApnS3fmi1n3DtlbeTUyBTWes9J4ObEvmc",
+        authDomain: "hobb-it.firebaseapp.com",
+        databaseURL: "https://hobb-it.firebaseio.com",
+        projectId: "hobb-it",
+        storageBucket: "hobb-it.appspot.com",
+        messagingSenderId: "926011515719",
+        appId: "1:926011515719:web:0a4204231bb1a21d472262",
+        measurementId: "G-SE1F0K9P8P"
+      };
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      window.FBINITED = true;
+      if ("Notification" in window) {
+        this.messaging = firebase.messaging();
+        this.subscribe();
+        this.messaging.onMessage(payload => {
+
+        });
+      }
+    }
+  },
+  methods: {
+    async subscribe() {
+      try {
+        await this.messaging.requestPermission();
+      } catch (e) {
+        return;
+      }
+      try {
+        const token = await this.messaging.getToken();
+        if (token) {
+          this.sendTokenToServer(token);
+        } else {
+          console.warn("Не удалось получить токен.");
+          this.setTokenSentToServer(false);
+        }
+      } catch (e) {
+        console.warn("При получении токена произошла ошибка.", e);
+        this.setTokenSentToServer(false);
+      }
+    },
+    sendTokenToServer(currentToken) {
+      if (!this.isTokenSentToServer(currentToken)) {
+        try {
+          this.$api.setFcm(currentToken);
+        } catch (e) {}
+        this.setTokenSentToServer(currentToken);
+      }
+    },
+
+    isTokenSentToServer(currentToken) {
+      return (
+        window.localStorage.getItem("sentFirebaseMessagingToken") ==
+        currentToken
+      );
+    },
+
+    setTokenSentToServer(currentToken) {
+      window.localStorage.setItem(
+        "sentFirebaseMessagingToken",
+        currentToken ? currentToken : ""
+      );
+    }
   }
 }
 </script>

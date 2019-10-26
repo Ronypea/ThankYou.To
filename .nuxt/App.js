@@ -18,7 +18,7 @@ import _e1bf6bc2 from '..\\layouts\\main_page.vue'
 const layouts = { "_default": _6f6c098b,"_main_page": _e1bf6bc2 }
 
 export default {
-  head: {"titleTemplate":"%s - HobbIT","title":"HobbIT","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":" "}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[]},
+  head: {"script":[{"src":"https:\u002F\u002Fwww.gstatic.com\u002Ffirebasejs\u002F7.2.2\u002Ffirebase-app.js"},{"src":"https:\u002F\u002Fwww.gstatic.com\u002Ffirebasejs\u002F7.2.2\u002Ffirebase-analytics.js"},{"src":"https:\u002F\u002Fwww.gstatic.com\u002Ffirebasejs\u002F7.2.2\u002Ffirebase-messaging.js"}],"titleTemplate":"%s - HobbIT","title":"HobbIT","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":" "}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[]},
 
   render (h, props) {
     const loadingEl = h('NuxtLoading', { ref: 'loading' })

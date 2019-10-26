@@ -7,6 +7,11 @@ export default class Api {
     this.$router = ctx.$router
   }
 
+  async setFcm(token) {
+    var res = await this.post(`user/fcm`, { fcmToken: token });
+    return res;
+  }
+
   async get(url, header = null) {
     var res = await this.$axios(`${baseUrl}/${url}`).catch(error => {
       return error.response.data;

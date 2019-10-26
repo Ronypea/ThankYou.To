@@ -6,6 +6,17 @@ export default {
   ** Headers of the page
   */
   head: {
+    "script": [
+      {
+        "src": "https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"
+      },
+      {
+        "src": "https://www.gstatic.com/firebasejs/7.2.2/firebase-analytics.js"
+      },
+      {
+        "src": "https://www.gstatic.com/firebasejs/7.2.2/firebase-messaging.js"
+      }
+    ],
     titleTemplate: '%s - ' + process.env.npm_package_name,
     title: process.env.npm_package_name || '',
     meta: [
