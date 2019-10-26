@@ -77,6 +77,20 @@ export default class Api {
     return res;
   }
 
+  async register (email, password, first_name, second_name) {
+    var res = await this.post(`public/auth/register`, {email, password, first_name, second_name});
+
+    if (res.token) {
+      this.$axios.setToken(res.token);
+      localStorage.setItem("token", res.token);
+      this.$router.replace("/");
+    }
+
+    console.log(res);
+
+    return res;
+  }
+
   async me() {
     return await this.get(`user/me`);
   }
