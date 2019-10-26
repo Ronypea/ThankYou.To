@@ -47,27 +47,16 @@
       >
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
+      <h1>{{ fullName }}</h1>
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-menu>
-        <template v-slot:activator="{ on }">
-          <v-btn
-            id="name"
-            color="#e12729"
-            v-on="on"
-          >
-            {{ fullName }}
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item
-            v-for="(item, index) in dropdownItems"
-            :key="index"
-          >
-            <v-list-item-title>{{ item }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
+      <v-btn
+        id="name"
+        color="#e12729"
+        @click="logout"
+      >
+        Выйти
+      </v-btn>
     </v-app-bar>
     <v-content>
       <v-container fill-height>
@@ -107,18 +96,6 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
-      dropdownItems: [
-        {
-          title: 'Change name',
-          onClick: () => {
-            document.getElementById('name').tagNam
-          }
-        },
-        {
-          title: 'Change name',
-          onClick: 'xd'
-        }
-      ],
       items: [
         {
           icon: 'mdi-account-search',
@@ -139,6 +116,12 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.commit('user/logout');
+      this.$router.push('/main');
     }
   },
   middleware: 'getUserData',
