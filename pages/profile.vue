@@ -1,7 +1,7 @@
 <template>
   <container>
       <v-row>
-        <v-col cols="4" v-for="section of sections"
+        <v-col xs="12" sm="6" md="6" lg="4" v-for="section of sections"
              v-blind="section._id"
              class="section-item">
           <v-card class="mx-auto"
@@ -22,8 +22,41 @@
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <v-btn text>Список участников</v-btn>
+              <v-btn text @click.stop="dialog = true"> List of participants </v-btn>
             </v-card-actions>
+
+            <v-dialog
+              v-model="dialog"
+              max-width="350px"
+              scrollable
+            >
+              <v-card>
+                <v-card-title class="headline"> List of participants </v-card-title>
+
+                <v-list>
+                  <v-list-item
+                    v-for="participant in participants"
+                    :key="participant._id"
+                    @click=""
+                  >
+                    <v-list-item-content>
+                      <v-list-item-title style="padding-left: 10px">{{ participant.id }}. {{ participant.name }} {{ participant.surname }}</v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    color="grey darken-1"
+                    text
+                    @click="dialog = false"
+                  >
+                    Close
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
 
           </v-card>
         </v-col>
@@ -37,6 +70,7 @@
     name: "profile",
     data() {
       return {
+        dialog: false,
         user: {
           name: 'Veronika',
           surname: 'Plotnikova'
@@ -79,6 +113,23 @@
             price: '100 рублей',
             category: 'Категория 3'
           }
+        ],
+        participants: [
+          {id: '1',
+          name: 'Veronika',
+          surname: 'Plotnikova'},
+          {id: '2',
+            name: 'Veronika',
+            surname: 'Plotnikova'},
+          {id: '3',
+            name: 'Veronika',
+            surname: 'Plotnikova'},
+          {id: '4',
+            name: 'Veronika',
+            surname: 'Plotnikova'},
+          {id: '5',
+            name: 'Veronika',
+            surname: 'Plotnikova'},
         ]
       }
     }
