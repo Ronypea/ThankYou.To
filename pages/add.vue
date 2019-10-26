@@ -5,35 +5,39 @@
         <v-row>
           <v-text-field
               v-model="name"
-              :counter="10"
-              :rules="nameRules"
+              :counter="25"
+              :rules="rules"
               label="Name"
               outlined
               required
             ></v-text-field>
         </v-row>
         <v-row justify="space-between">
-            <v-date-picker :min="getDate()"></v-date-picker>
+            <v-date-picker :min="new Date().toISOString().substr(0, 10)" v-model="date"></v-date-picker>
           <v-col cols="6" style="padding-bottom: 0">
             <v-subheader style="padding: 0">Number of people</v-subheader>
-            <v-slider
-              v-model="slider"
-              class="align-center"
-              :max="max"
-              :min="min"
-            >
-              <template v-slot:append>
-                <v-text-field
-                  v-model="slider"
-                  class="mt-0 pt-0"
-                  hide-details
-                  outlined
-                  single-line
-                  type="number"
-                  style="width: 60px"
-                ></v-text-field>
-              </template>
-            </v-slider>
+              <v-row>
+                <v-col class="pr-4">
+                  <v-slider
+                    v-model="slider"
+                    class="align-center"
+                    :max="max"
+                    :min="min"
+                    hide-details
+                  >
+                    <template v-slot:append>
+                      <v-text-field
+                        v-model="slider"
+                        class="mt-0 pt-0"
+                        hide-details
+                        regular
+                        type="number"
+                        style="width: 60px"
+                      ></v-text-field>
+                    </template>
+                  </v-slider>
+                </v-col>
+              </v-row>
             <v-text-field
               v-model="price"
               label="Price"
@@ -43,37 +47,50 @@
             <v-textarea
             outlined
             label="Description"
+            counter=100
             ></v-textarea>
             <v-btn color="primary" width="100%">Submit</v-btn>
           </v-col>
         </v-row>
+        <!-- <Map></Map> -->
       </v-form>
     </v-col>
   </v-row>
 </template>
 
 <script>
+// import Map from '../components/Map';
 
 export default {
+  // components:[Map],
   data() {
     return {
       max: 100,
       min: 0,
-      slider: 0
+      slider: 0,
+      date: new Date().toISOString().substr(0, 10),
+      nameMax: 25,
+      descriptionMax: 100
     }
   },
-  methods: {
-    getDate: () => {
-      let date = new Date();
-      let day = String(date.getDate() + 1).padStart(2, '0');
-      let month = String(date.getMonth() + 1).padStart(2, '0');
-      let year = String(date.getFullYear());
+  computed: {
+    rules() {
+      const rules = [];
 
-      return `${year}-${month}-${day}`;
+      if (this.nameMax) {
+        const rule = v => (v || '').length <= this.nameMax || `A maximum of ${this.nameMax} characters is allowed`
+
+        rules.push(rule);
+      }
+
+      return rules;
     }
   }
 }
 </script>
 
 <style scoped>
+  div.v-input__control {
+
+  }
 </style>
