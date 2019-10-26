@@ -34,7 +34,7 @@
               </v-list-item-subtitle>
               <v-list-item-subtitle>
                 <v-icon> mdi-music</v-icon>
-                <span v-for="(genre, index) in player.genres"> <span> {{ genre}}</span> <span
+                <span v-for="(genre, index) in player.genres" :key="index"> <span> {{ genre}}</span> <span
                   v-if="index+1 < player.genres.length">, </span></span>
               </v-list-item-subtitle>
             </v-list-item-content>
@@ -55,7 +55,6 @@
                 <v-list-item
                   v-for="participant in participants"
                   :key="participant._id"
-                  @click=""
                 >
                   <v-list-item-content>
                     <v-list-item-title style="padding-left: 10px">{{ participant.id }}. {{ participant.name }} {{
