@@ -64,6 +64,16 @@
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
+                <v-list>
+                  <v-list-item
+                    v-for="participant in participants"
+                    :key="participant._id"
+                  >
+                    <v-list-item-content>
+                      <v-list-item-title style="padding-left: 10px">{{ participant.id }}. {{ participant.name }} {{ participant.surname }}</v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list>
 
               <v-card-actions>
                 <v-spacer></v-spacer>
