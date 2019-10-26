@@ -17,7 +17,9 @@ export const mutations = {
     localStorage.setItem('token', token);
     localStorage.setItem('renewToken', renewToken);
   },
-  TEST: (state, name) => {
-    state.name = name;
+  LOGOUT: (state) => {
+    state.data = {};
+    localStorage.removeItem('token');
+    localStorage.removeItem('renewToken');
   }
 }

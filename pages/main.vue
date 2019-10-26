@@ -17,7 +17,7 @@
         height="48"
         class="mt-4"
         outlined
-      > Get start
+      > Get started
       </v-btn>
     </v-layout>
     <v-flex lg9>
