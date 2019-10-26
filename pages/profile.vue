@@ -64,7 +64,7 @@
   </container>
 </template>
 
-<script>
+<script>import api from '../api/api.js'
 
   export default {
     name: "profile",
@@ -132,6 +132,17 @@
             surname: 'Plotnikova'},
         ]
       }
+    },
+    methods: {
+      async fetchSections() {
+        console.log('aaaaaaaaaaaaaa')
+        const response = api.getSections()
+        console.log(response)
+        console.log('aaaaaaaaaaaaaa')
+      }
+    },
+    mounted(){
+      this.fetchSections()
     }
   }
 </script>

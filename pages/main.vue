@@ -1,11 +1,11 @@
 <template>
-  <v-layout fill-height justify-space-between>
-    <v-flex lg8>
+  <v-layout fill-height>
+    <v-flex lg7>
     <img
       src="@/assets/main_pic.jpg"
-      width="80%"
-      height="95%"
-      style="background-size: cover; box-shadow: 5px 14px 28px rgba(0,0,0,0.8); display:block; margin-left: 50px"
+      width="570px"
+      height="570px"
+      style="background-size: cover; box-shadow: 5px 14px 28px rgba(0,0,0,0.8); display:block"
     />
     </v-flex>
     <v-layout column justify-center align-center class="text_layout">
@@ -46,7 +46,7 @@
     text-align: left;
     font-family: 'Oswald', cursive;
     font-weight: bold;
-    font-size: xx-large;
+    font-size: 70px;
   }
 
   #header2 {

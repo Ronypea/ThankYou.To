@@ -5,11 +5,11 @@
         <v-toolbar flat color="primary" dark class="title">Авторизация</v-toolbar>
         <v-card-text>
           <v-layout column>
-            <v-text-field append-icon="email" outlined label="Email" v-model="email"></v-text-field>
+            <v-text-field append-icon="mdi-account" outlined label="Email" v-model="email"></v-text-field>
             <v-text-field
               @keyup.enter="send()"
               outlined
-              append-icon="https"
+              append-icon="mdi-lock"
               label="Password"
               type="password"
               v-model="password"
@@ -23,7 +23,7 @@
           <v-layout v-else>
             <v-btn @click="send()" :disabled="password.length<6" block text>
               Войти
-              <v-icon small class="pl-2">arrow_forward_ios</v-icon>
+              <v-icon small class="pl-2">mdi-chevron-right</v-icon>
             </v-btn>
           </v-layout>
         </v-card-actions>
