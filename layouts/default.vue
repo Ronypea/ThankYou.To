@@ -8,15 +8,15 @@
       permanent
       app
     >
-      <v-row justify="start" style="padding: 7px 25px">
+      <v-row justify="start" align="center" style="padding: 7px 25px">
         <img
-          src="../static/logo.png"
-          width=50px
-          height=50px
+          src="../static/logo.svg"
+          width=75px
+          height=75px
           style="border-radius: 50%"
           contain
         >
-        <v-subheader style="padding: 0">HobbIT</v-subheader>
+        <v-subheader style="padding: 5px; color: #e12729; font-size: large">ThankYou.To</v-subheader>
       </v-row>
       <v-divider></v-divider>
       <v-list>
@@ -28,10 +28,10 @@
           exact
         >
           <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon large color="#1b557a">{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title style="color: #1b557a" v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -53,8 +53,7 @@
         <template v-slot:activator="{ on }">
           <v-btn
             id="name"
-            color="primary"
-            dark
+            color="#e12729"
             v-on="on"
           >
             {{ fullName }}
@@ -92,12 +91,12 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-footer
-      :fixed="fixed"
-      app
-    >
-      <span>&copy; 2019</span>
-    </v-footer>
+    <!--<v-footer-->
+      <!--:fixed="fixed"-->
+      <!--app-->
+    <!--&gt;-->
+      <!--<span>&copy; 2019</span>-->
+    <!--</v-footer>-->
   </v-app>
 </template>
 
@@ -122,12 +121,12 @@ export default {
       ],
       items: [
         {
-          icon: 'mdi-file-document-box',
+          icon: 'mdi-account-search',
           title: 'Musicians',
           to: '/profile'
         },
         {
-        icon: 'mdi-plus',
+        icon: 'mdi-account-card-details-outline',
           title: 'Management',
           to: '/add'
         },
@@ -140,7 +139,6 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
     }
   },
   middleware: 'getUserData',
