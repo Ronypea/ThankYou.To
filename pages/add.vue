@@ -1,78 +1,174 @@
 <template>
+  <v-layout justify-center v-if="isEdit===false">
+    <v-flex sm12 md6 lg8>
+      <v-img
+        height="auto"
+        :src=place.photo
+      ></v-img>
+    </v-flex>
     <v-card
-    :loading="loading"
-    class="mx-auto my-12"
-    max-width="374"
-  >
-    <v-img
-      height="250"
-      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-    ></v-img>
+      :elevaionion="4">
+      <v-layout column justify-center align-left>
+        <v-card-title> {{ place.name }}</v-card-title>
+        <v-card-text>
+          <v-row
+            align="center"
+            class="mx-0"
+          >
+            <v-rating
+              :value=place.rating
+              color="amber"
+              dense
+              half-increments
+              readonly
+              size="20"
+            ></v-rating>
 
-    <v-card-title>Cafe Badilico</v-card-title>
+            <div class="grey--text ml-4"> {{ place.rating }}</div>
+          </v-row>
 
-    <v-card-text>
-      <v-row
-        align="center"
-        class="mx-0"
-      >
-        <v-rating
-          :value="4.5"
-          color="amber"
-          dense
-          half-increments
-          readonly
-          size="14"
-        ></v-rating>
+          <div class="my-4 subtitle-1 black--text">
+            {{ place.type }}
+          </div>
+          <div class="my-4 subtitle-1 black--text">
+            {{ place.location }}
+          </div>
 
-        <div class="grey--text ml-4">4.5 (413)</div>
-      </v-row>
+        </v-card-text>
 
-      <div class="my-4 subtitle-1 black--text">
-        $ • Italian, Cafe
-      </div>
+        <v-divider class="mx-4"></v-divider>
 
-      <div>Small plates, salads & sandwiches an inteimate setting with 12 indoor seats plus patio seating.</div>
-    </v-card-text>
+        <v-card-title>Music preferences</v-card-title>
+        <v-card-text>
+          <v-chip v-for="(genre, index) in place.genres"
+                  :key="index" class="mr-2"> {{ genre }}
+          </v-chip>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn class="ma-2" outlined large fab color="indigo"
+                 @click='startEdit()'>
+            <v-icon>mdi-pencil</v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-layout>
+    </v-card>
+  </v-layout>
 
-    <v-divider class="mx-4"></v-divider>
+  <v-layout justify-center v-else>
+    <v-flex sm12 md6 lg8>
+      <img
+        width="100%"
+        src="@/static/undraw_clean_up_ucm0.svg"
+      />
+    </v-flex>
+    <v-card
+      :elevaionion="4">
+      <v-layout column justify-center align-left>
+        <v-text-field
+          v-model="name"
+          :counter="25"
+          :rules="rules"
+          label="Name"
+          :placeholder=place.name
+          outlined
+          required
+        ></v-text-field>
+        <v-card>
+          <v-row
+            align="center"
+            class="mx-0"
+          >
+            <v-combobox
+              v-model="select"
+              :items=all_types
+              label="Select a type"
+            ></v-combobox>
 
-    <v-card-title>Tonight's availability</v-card-title>
+            <v-text-field
+              v-model="location"
+              :counter="25"
+              :rules="rules"
+              label="Location"
+              :placeholder=place.location
+              outlined
+              required
+            ></v-text-field>
+          </v-row>
+        </v-card>
 
-    <v-card-text>
-      <v-chip-group
-        v-model="selection"
-        active-class="deep-purple accent-4 white--text"
-        column
-      >
-        <v-chip>5:30PM</v-chip>
+        <v-divider class="mx-4"></v-divider>
 
-        <v-chip>7:30PM</v-chip>
-
-        <v-chip>8:00PM</v-chip>
-
-        <v-chip>9:00PM</v-chip>
-      </v-chip-group>
-    </v-card-text>
-
-    <v-card-actions>
-      <v-btn
-        color="deep-purple accent-4"
-        text
-        @click="reserve"
-      >
-        Reserve
-      </v-btn>
-    </v-card-actions>
-  </v-card>
+        <v-card-title>Music preferences</v-card-title>
+        <v-card-text>
+          <v-combobox
+            v-model="genres"
+            :items="all_genres"
+            chips
+            clearable
+            label="Your preferences"
+            multiple
+            solo
+          >
+            <template v-slot:selection="{ attrs, item, select, selected }">
+              <v-chip
+                v-bind="attrs"
+                :input-value="selected"
+                close
+                @click="select"
+                @click:close="remove(item)"
+              >
+                <strong>{{ item }}</strong>&nbsp;
+              </v-chip>
+            </template>
+          </v-combobox>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn
+            color="deep-purple accent-4"
+            text
+            @click="onSave()"
+          >
+            Edit
+          </v-btn>
+        </v-card-actions>
+      </v-layout>
+    </v-card>
+  </v-layout>
 </template>
 
 <script>
-export default {
-
-}
+  export default {
+    data() {
+      return {
+        isEdit: false,
+        place: {
+          id: '0',
+          name: 'Bushe',
+          type: 'Coffee shop',
+          location: 'Spb, Nahimova street, 4',
+          genres: ['RNB', 'rep', 'rock'],
+          photo: 'https://media-cdn.tripadvisor.com/media/photo-s/14/d3/f4/72/caption.jpg',
+          rating: '4.3'
+        },
+        all_types: ['bar', 'cafe', 'restorant', 'chillhouse'],
+        all_genres: ['RNB', 'vocal', 'rock', 'retro', 'jazz', 'bluze']
+      }
+    },
+    methods: {
+      startEdit() {
+        this.isEdit = true
+      },
+      onSave() {
+        // отправка в базу
+        this.isEdit = false
+      },
+      remove(item) {
+        this.chips.splice(this.chips.indexOf(item), 1)
+        this.chips = [...this.chips]
+      },
+    }
+  }
 </script>
 
 <style>
-
 </style>
