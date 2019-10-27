@@ -163,13 +163,13 @@ export default {
           this.chips.splice(this.chips.indexOf(item), 1)
           this.chips = [...this.chips]
         },
-      },
-      mounted() {
-        this.$api.getPlace().then(place => {
-          this.place = place;
-          console.log(this.place)
-        })
       }
+//      mounted() {
+//        this.$api.getPlace().then(place => {
+//          this.place = place;
+//          console.log(this.place)
+//        })
+//      }
     }
 </script>
 
