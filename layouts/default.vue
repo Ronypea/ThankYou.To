@@ -120,7 +120,7 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.commit('user/logout');
+      this.$store.commit('user/LOGOUT');
       this.$router.push('/main');
     }
   },

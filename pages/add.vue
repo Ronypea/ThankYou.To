@@ -120,7 +120,7 @@
               @click='toggleEditing()'
             >
               <v-icon>mdi-pencil</v-icon>
-              EDIT PLACE
+              {{isEditing ? 'SAVE CHANGES' : 'EDIT PLACE'}}
             </v-btn>
           </v-card-actions>
         </v-col>
