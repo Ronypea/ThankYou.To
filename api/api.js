@@ -71,7 +71,7 @@ export default class Api {
 
       this.$store.commit('user/ADD_AUTH_DATA', res);
 
-      this.$router.replace("/");
+      this.$router.replace("/profile");
     }
 
     return res;
@@ -94,7 +94,6 @@ export default class Api {
   async me() {
     return await this.get(`user/me`);
   }
-
 
   async getUserData(renewToken) {
     const newData = await this.post(`public/auth/renew`, {renewToken});
