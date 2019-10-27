@@ -129,8 +129,6 @@ export default {
     fullName() {
       const userData = this.$store.state.user.data;
 
-      console.log(userData);
-
       return `${userData.nameFirst} ${userData.nameLast}`;
     }
   },
