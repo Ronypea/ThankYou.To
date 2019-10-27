@@ -1,7 +1,13 @@
 <template>
-  <v-layout fill-height align-center justify-center class='background'>
-    <v-card elevation="24" width="500px">
-      <v-card-title flat align-center > Регистрация </v-card-title>
+  <v-layout fill-height align-center justify-center>
+    <v-card flat style="position: relative; align-content: end; margin: -15px">
+      <img src="@/static/undraw_design_sprint_x3eb.svg"
+           width="60%"
+           height="100%"
+           style="background-size: cover"/>
+    </v-card>
+    <v-card flat elevation="5" shaped width="500px" style="position: absolute; margin-left: 25%">
+      <v-card-title flat align-center> Registration </v-card-title>
       <v-divider></v-divider>
       <v-card-text>
         <v-layout column>
@@ -34,7 +40,7 @@
         </v-layout>
         <v-layout v-else>
           <v-btn @click="send()" :disabled="password.length<6" block text>
-            Зарегистрироваться
+            Sign up
           </v-btn>
         </v-layout>
       </v-card-actions>
@@ -43,39 +49,39 @@
 </template>
 
 <script>
-    export default {
-        name: "register",
-      layout: "main_page",
-      data() {
-        return {
-          email: "",
-          password: "",
-          first_name: "",
-          last_name: "",
-          confirm_password: "",
-          progress: false,
-          confirmRules: [
-            v => !!v || 'Password confirm is required',
+  export default {
+    name: "register",
+    layout: "main_page",
+    data() {
+      return {
+        email: "",
+        password: "",
+        first_name: "",
+        last_name: "",
+        confirm_password: "",
+        progress: false,
+        confirmRules: [
+          v => !!v || 'Password confirm is required',
           v => v === this.password || 'Passwords have to match'
-          ]
-        }
-      },
-      methods: {
-        send() {
-          this.progress = true;
+        ]
+      }
+    },
+    methods: {
+      send() {
+        this.progress = true;
 
-          this.$api.register(this.email, this.password, this.first_name, this.last_name);
+        this.$api.register(this.email, this.password, this.first_name, this.last_name);
 
-          this.progress = false;
-        }
+        this.progress = false;
       }
     }
+  }
 </script>
 
 <style scoped>
-  .background {
-    background-size: cover;
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(https://images.unsplash.com/photo-1513829596324-4bb2800c5efb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);
-  }
+  /*.background {*/
+  /*background-size: cover;*/
+  /*background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(https://images.unsplash.com/photo-1513829596324-4bb2800c5efb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);*/
+  /*}*/
 
 </style>
