@@ -181,11 +181,6 @@ export default {
       ]
     }
   },
-  methods: {
-    async fetchSections() {
-      const response = api.getSections()
-    }
-  },
   mounted() {
     this.$api.getPerformances().then(performances => {
       this.players = performances;

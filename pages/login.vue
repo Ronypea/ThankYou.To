@@ -18,6 +18,7 @@
           <v-text-field
             hide-details
             class="input"
+            :rules="confrim"
             @keyup.enter="send()"
             outlined
             append-icon="mdi-lock"

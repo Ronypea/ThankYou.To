@@ -64,7 +64,7 @@ export default class Api {
   }
 
   async login(email, password) {
-    var res = await this.post(`public/auth/login`, {email, password, agent:'place'});
+    var res = await this.post(`public/auth/login`, {email, password, agent: 'place'});
 
     if (res.token) {
       this.$axios.setToken(res.token);
@@ -77,8 +77,8 @@ export default class Api {
     return res;
   }
 
-  async register (email, password, nameFirst, nameLast) {
-    var res = await this.post(`public/auth/register`, {email, password, nameFirst, nameLast, agent:'place'});
+  async register(email, password, nameFirst, nameLast) {
+    var res = await this.post(`public/auth/register`, {email, password, nameFirst, nameLast, agent: 'place'});
 
     if (res.token) {
       this.$axios.setToken(res.token);
@@ -100,5 +100,33 @@ export default class Api {
     const newData = await this.post(`public/auth/renew`, {renewToken});
     this.$store.commit('user/ADD_AUTH_DATA', newData);
     return newData;
+  }
+
+  async getPlace() {
+    const token = localStorage.getItem('token')
+    this.$axios.setToken(token)
+    const response = await this.get(`player/me`)
+    return response;
+  }
+
+  async getPerformances() {
+    const token = localStorage.getItem('token')
+    this.$axios.setToken(token)
+    const response = await this.get(`performance/get`)
+    return response;
+  }
+
+  async editPlace(parameters) {
+    const token = localStorage.getItem('token')
+    this.$axios.setToken(token)
+    await this.post(`places/create`, parameters);
+  }
+
+  async getTypes() {
+    return await this.get(`public/place_types`)
+  }
+
+  async getGenres() {
+    return await this.get(`public/genres`)
   }
 }

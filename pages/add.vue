@@ -136,38 +136,45 @@
   </v-layout>
 </template>
 
-<script>
-  export default {
-    data() {
-      return {
-        isEdit: false,
-        place: {
-          id: '0',
-          name: 'Bushe',
-          type: 'Coffee shop',
-          location: 'Spb, Nahimova street, 4',
-          genres: ['RNB', 'rep', 'rock'],
-          photo: 'https://media-cdn.tripadvisor.com/media/photo-s/14/d3/f4/72/caption.jpg',
-          rating: '4.3'
-        },
-        all_types: ['bar', 'cafe', 'restorant', 'chillhouse'],
-        all_genres: ['RNB', 'vocal', 'rock', 'retro', 'jazz', 'bluze']
-      }
-    },
-    methods: {
-      startEdit() {
-        this.isEdit = true
+<script>import api from '../api/api.js'
+
+export default {
+  data() {
+    return {
+      isEdit: false,
+      place: {
+        id: '0',
+        name: 'Bushe',
+        type: 'Coffee shop',
+        location: 'Spb, Nahimova street, 4',
+        genres: ['RNB', 'rep', 'rock'],
+        photo: 'https://media-cdn.tripadvisor.com/media/photo-s/14/d3/f4/72/caption.jpg',
+        rating: '4.3'
       },
-      onSave() {
-        // отправка в базу
-        this.isEdit = false
-      },
-      remove(item) {
-        this.chips.splice(this.chips.indexOf(item), 1)
-        this.chips = [...this.chips]
-      },
+      all_types: ['bar', 'cafe', 'restorant', 'chillhouse'],
+      all_genres: ['RNB', 'vocal', 'rock', 'retro', 'jazz', 'bluze']
     }
+  },
+  methods: {
+    startEdit() {
+      this.isEdit = true
+    },
+    onSave() {
+      this.$api.editPlace(this.place)
+      this.isEdit = false
+    },
+    remove(item) {
+      this.chips.splice(this.chips.indexOf(item), 1)
+      this.chips = [...this.chips]
+    },
+  },
+  mounted() {
+    this.$api.getPlace().then(place => {
+      this.place = place;
+      console.log(this.place)
+    })
   }
+}
 </script>
 
 <style>
