@@ -1,20 +1,18 @@
 <template>
-  <v-layout justify-center v-if="isEdit===false">
-    <v-flex sm12 md6 lg8>
+  <v-layout justify-center>
+    <v-card outlined hover width=85% height=500px style="overflow: hidden">
       <v-img
-        height="auto"
         :src=place.photo
+        width=100%
+        style="position: absolute"
+        height=100%
       ></v-img>
-    </v-flex>
-    <v-card
-      :elevaionion="4">
-      <v-layout column justify-center align-left>
-        <v-card-title> {{ place.name }}</v-card-title>
-        <v-card-text>
-          <v-row
-            align="center"
-            class="mx-0"
-          >
+      <v-row style="height: 100%">
+        <v-col lg=8 md=8 sm=8>
+        </v-col>
+        <v-col lg=4 md=4 sm=4 style="height: 100%; background-color: white; z-index: 1" v-if="!isEditing">
+          <v-card-title style="font-size: 40px">{{ place.name }}</v-card-title>
+          <v-row align="center" style="padding-left: 28px">
             <v-rating
               :value=place.rating
               color="amber"
@@ -23,115 +21,110 @@
               readonly
               size="20"
             ></v-rating>
-
             <div class="grey--text ml-4"> {{ place.rating }}</div>
           </v-row>
-
-          <div class="my-4 subtitle-1 black--text">
-            {{ place.type }}
-          </div>
-          <div class="my-4 subtitle-1 black--text">
-            {{ place.location }}
-          </div>
-
-        </v-card-text>
-
-        <v-divider class="mx-4"></v-divider>
-
-        <v-card-title>Music preferences</v-card-title>
-        <v-card-text>
-          <v-chip v-for="(genre, index) in place.genres"
-                  :key="index" class="mr-2"> {{ genre }}
-          </v-chip>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn class="ma-2" outlined large fab color="indigo"
-                 @click='startEdit()'>
-            <v-icon>mdi-pencil</v-icon>
-          </v-btn>
-        </v-card-actions>
-      </v-layout>
-    </v-card>
-  </v-layout>
-
-  <v-layout justify-center v-else>
-    <v-flex sm12 md6 lg8>
-      <img
-        width="100%"
-        src="@/static/undraw_clean_up_ucm0.svg"
-      />
-    </v-flex>
-    <v-card
-      :elevaionion="4">
-      <v-layout column justify-center align-left>
-        <v-text-field
-          v-model="name"
-          :counter="25"
-          :rules="rules"
-          label="Name"
-          :placeholder=place.name
-          outlined
-          required
-        ></v-text-field>
-        <v-card>
-          <v-row
-            align="center"
-            class="mx-0"
+          <v-card-text>{{ place.type }}</v-card-text>
+          <v-card-text style="padding-bottom: 0">Address:</v-card-text>
+          <v-card-subtitle style="padding-top: 0px">{{ place.location }}</v-card-subtitle>
+          <v-card-text style="padding-bottom: 4px">Music preferences:</v-card-text>
+          <v-chip
+            pill
+            v-for="(genre, index) in place.genres"
+            :key="index"
+            class="mr-2"
+            style="margin: 4px 0"
           >
-            <v-combobox
-              v-model="select"
-              :items=all_types
-              label="Select a type"
-            ></v-combobox>
-
-            <v-text-field
-              v-model="location"
-              :counter="25"
-              :rules="rules"
-              label="Location"
-              :placeholder=place.location
+            <v-avatar
+              left
+              color="red"
+            >
+              {{ genre.slice(0,1) }}
+            </v-avatar>
+            {{ genre }}
+          </v-chip>
+          <v-card-actions style="margin-right: 26px">
+            <v-btn
+              class="ma-2"
               outlined
-              required
-            ></v-text-field>
+              large
+              color="indigo"
+              block
+              @click='toggleEditing()'
+            >
+              <v-icon>mdi-pencil</v-icon>
+              EDIT PLACE
+            </v-btn>
+          </v-card-actions>
+        </v-col>
+        <v-col lg=4 md=4 sm=4 style="height: 100%; background-color: white; z-index: 1; font-weight: 500" v-else>
+          <v-text-field v-model="place.name" hide-details style="font-size: 40px; margin-right: 12px; padding: 11px 16px 16px; letter-spacing: 0.0125em;">{{ place.name }}</v-text-field>
+          <v-row align="center" style="padding-left: 28px">
+            <v-rating
+              :value=place.rating
+              color="amber"
+              dense
+              half-increments
+              readonly
+              size="20"
+            ></v-rating>
+            <div class="grey--text ml-4"> {{ place.rating }}</div>
           </v-row>
-        </v-card>
-
-        <v-divider class="mx-4"></v-divider>
-
-        <v-card-title>Music preferences</v-card-title>
-        <v-card-text>
+          <v-select
+            v-model="place.type"
+            :items="all_types"
+            style="margin-right: 12px; padding: 8px 16px 11px; font-size: 0.875rem; font-weight: 400;"
+            hide-details
+          ></v-select>
+          <v-card-text style="padding-bottom: 0">Address:</v-card-text>
+          <v-text-field
+            style="margin: 0 12px 0 0; padding: 0 16px; font-size: 0.875rem; font-weight: 400;"
+            v-model="place.location"
+            hide-details
+          ></v-text-field>
+          <v-card-text style="padding-bottom: 4px">Music preferences:</v-card-text>
           <v-combobox
-            v-model="genres"
+            v-model="place.genres"
             :items="all_genres"
             chips
-            clearable
-            label="Your preferences"
             multiple
-            solo
+            small-chips
+            style="padding: 16px"
+            hide-details
+            append-icon
           >
             <template v-slot:selection="{ attrs, item, select, selected }">
               <v-chip
-                v-bind="attrs"
-                :input-value="selected"
-                close
+                pill
+                :key="index"
+                class="mr-2"
                 @click="select"
                 @click:close="remove(item)"
               >
-                <strong>{{ item }}</strong>&nbsp;
+                <v-avatar
+                  left
+                  color="red"
+                >
+                {{ item.slice(0,1) }}
+                </v-avatar>
+                {{ item }}
               </v-chip>
             </template>
           </v-combobox>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn
-            color="deep-purple accent-4"
-            text
-            @click="onSave()"
-          >
-            Edit
-          </v-btn>
-        </v-card-actions>
-      </v-layout>
+          <v-card-actions style="margin-right: 26px">
+            <v-btn
+              class="ma-2"
+              outlined
+              large
+              color="indigo"
+              block
+              @click='toggleEditing()'
+            >
+              <v-icon>mdi-pencil</v-icon>
+              EDIT PLACE
+            </v-btn>
+          </v-card-actions>
+        </v-col>
+      </v-row>
     </v-card>
   </v-layout>
 </template>
@@ -140,7 +133,7 @@
   export default {
     data() {
       return {
-        isEdit: false,
+        isEditing: false,
         place: {
           id: '0',
           name: 'Bushe',
@@ -155,16 +148,16 @@
       }
     },
     methods: {
-      startEdit() {
-        this.isEdit = true
+      toggleEditing() {
+        this.isEditing = !this.isEditing
       },
-      onSave() {
-        // отправка в базу
-        this.isEdit = false
-      },
+      // onSave() {
+      //   // отправка в базу
+      //   this.isEdit = false
+      // },
       remove(item) {
-        this.chips.splice(this.chips.indexOf(item), 1)
-        this.chips = [...this.chips]
+        this.place.genres.splice(this.place.genres.indexOf(item), 1)
+        this.place.genres = [...this.place.genres]
       },
     }
   }
