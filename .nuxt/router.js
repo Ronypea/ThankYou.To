@@ -6,10 +6,10 @@ import scrollBehavior from './router.scrollBehavior.js'
 const _3562b68e = () => interopDefault(import('..\\pages\\add.vue' /* webpackChunkName: "pages_add" */))
 const _d6324b1c = () => interopDefault(import('..\\pages\\inspire.vue' /* webpackChunkName: "pages_inspire" */))
 const _b6b410fe = () => interopDefault(import('..\\pages\\login.vue' /* webpackChunkName: "pages_login" */))
-const _104ec1d1 = () => interopDefault(import('..\\pages\\main.vue' /* webpackChunkName: "pages_main" */))
 const _9d6547cc = () => interopDefault(import('..\\pages\\musicians.vue' /* webpackChunkName: "pages_musicians" */))
 const _0e32f1c1 = () => interopDefault(import('..\\pages\\profile.vue' /* webpackChunkName: "pages_profile" */))
 const _0c0e65bb = () => interopDefault(import('..\\pages\\register.vue' /* webpackChunkName: "pages_register" */))
+const _4a03572c = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
 Vue.use(Router)
 
@@ -33,10 +33,6 @@ export const routerOptions = {
     component: _b6b410fe,
     name: "login"
   }, {
-    path: "/main",
-    component: _104ec1d1,
-    name: "main"
-  }, {
     path: "/musicians",
     component: _9d6547cc,
     name: "musicians"
@@ -48,6 +44,10 @@ export const routerOptions = {
     path: "/register",
     component: _0c0e65bb,
     name: "register"
+  }, {
+    path: "/",
+    component: _4a03572c,
+    name: "index"
   }],
 
   fallback: false
