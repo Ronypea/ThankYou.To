@@ -71,7 +71,7 @@ export default class Api {
 
       this.$store.commit('user/ADD_AUTH_DATA', res);
 
-      this.$router.replace("/");
+      this.$router.replace("/musicians");
     }
 
     return res;
@@ -85,7 +85,7 @@ export default class Api {
 
       this.$store.commit('user/ADD_AUTH_DATA', res);
 
-      this.$router.replace("/");
+      this.$router.replace("/musicians");
     }
 
     return res;
@@ -113,6 +113,7 @@ export default class Api {
     const token = localStorage.getItem('token')
     this.$axios.setToken(token)
     const response = await this.get(`performance/get`)
+    console.log(response)
     return response;
   }
 
