@@ -46,43 +46,19 @@
 
           <v-dialog
             v-model="dialog"
-            max-width="350px"
-            scrollable
+            max-width="400px"
           >
-            <v-card>
-              <v-card-title class="headline"> List of participants</v-card-title>
-
-              <v-list>
-                <v-list-item
-                  v-for="participant in participants"
-                  :key="participant._id"
-                >
-                  <v-list-item-content>
-                    <v-list-item-title style="padding-left: 10px">{{ participant.id }}. {{ participant.name }} {{
-                      participant.surname }}
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-                <v-list>
-                  <v-list-item
-                    v-for="participant in participants"
-                    :key="participant._id"
-                  >
-                    <v-list-item-content>
-                      <v-list-item-title style="padding-left: 10px">{{ participant.id }}. {{ participant.name }} {{ participant.surname }}</v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list>
-
+            <v-card min-height="80vh">
+              <v-card-title class="headline"> Make order</v-card-title>
+              <datetime format="MM/DD/YYYY H:i" width="300px" v-model="val"></datetime>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn
                   color="grey darken-1"
                   text
-                  @click="dialog = false"
+                  @click="onMusician()"
                 >
-                  Close
+                  Send
                 </v-btn>
               </v-card-actions>
             </v-card>
@@ -103,8 +79,10 @@
 </template>
 
 <script>import api from '../api/api.js'
+import datetime from 'vuejs-datetimepicker'
 
 export default {
+components: {datetime},
   name: "profile",
   data() {
     return {
@@ -181,12 +159,14 @@ export default {
       ]
     }
   },
-  mounted() {
-    this.$api.getPerformances().then(performances => {
-      this.players = performances;
-    })
+  methods: {
+    onMusician() {
+      this.dialog = false
+      //request to musician
+      //const response = api.getSections()
+    }
   }
-}
+ }
 </script>
 
 <style scoped>
