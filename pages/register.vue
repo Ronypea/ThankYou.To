@@ -7,39 +7,56 @@
            style="background-size: cover"/>
     </v-card>
     <v-card flat elevation="5" shaped width="500px" style="position: absolute; margin-left: 25%">
-      <v-card-title flat align-center> Registration </v-card-title>
+      <v-card-title flat align-center> Registration</v-card-title>
       <v-divider></v-divider>
       <v-card-text>
-        <v-layout column>
-          <v-layout>
-            <v-text-field outlined label="First name" v-model="first_name" style="margin: 3px;"></v-text-field>
-            <v-text-field outlined label="Last name" v-model="last_name" style="margin: 3px;"></v-text-field>
+        <v-form v-model="valid"
+                ref="form"
+                lazy-validation>
+          <v-layout column>
+            <v-layout>
+              <v-text-field
+                outlined label="First name"
+                v-model="first_name"
+                style="margin: 3px;"></v-text-field>
+              <v-text-field
+                outlined
+                label="Last name"
+                v-model="last_name"
+                style="margin: 3px;"></v-text-field>
+            </v-layout>
+            <v-text-field
+              append-icon="mdi-account"
+              outlined label="Email"
+              v-model="email"
+              :rules="emailRules"></v-text-field>
+            <v-text-field
+              @keyup.enter="send()"
+              outlined
+              append-icon="mdi-lock"
+              label="Password"
+              type="password"
+              v-model="password"
+              :rules="passwordRules"
+            ></v-text-field>
+            <v-text-field
+              outlined
+              append-icon="mdi-lock"
+              label="Confirm password"
+              type="password"
+              v-model="confirm_password"
+              :rules="confirmRules"
+            ></v-text-field>
           </v-layout>
-          <v-text-field append-icon="mdi-account" outlined label="Email" v-model="email"></v-text-field>
-          <v-text-field
-            @keyup.enter="send()"
-            outlined
-            append-icon="mdi-lock"
-            label="Password"
-            type="password"
-            v-model="password"
-          ></v-text-field>
-          <v-text-field
-            outlined
-            append-icon="mdi-lock"
-            label="Confirm password"
-            type="password"
-            v-model="confirm_password"
-            :rules="confirmRules"
-          ></v-text-field>
-        </v-layout>
+        </v-form>
       </v-card-text>
       <v-card-actions>
         <v-layout class="ml-2 mr-2 pb-2" row align-center justify-center v-if="progress">
           <v-progress-linear indeterminate></v-progress-linear>
         </v-layout>
         <v-layout v-else>
-          <v-btn @click="send()" :disabled="password.length<6" block text>
+          <v-btn @click="send()"
+                 :disabled="!valid" block text>
             Sign up
           </v-btn>
         </v-layout>
@@ -60,6 +77,14 @@
         last_name: "",
         confirm_password: "",
         progress: false,
+        emailRules: [
+          v => !!v || 'Enter e-mail',
+          v => /.+@.+/.test(v) || 'E-mail do not match '
+        ],
+        passwordRules: [
+          v => !!v || 'Enter password',
+          v => (v && v.length >= 4) || 'Password do not match '
+        ],
         confirmRules: [
           v => !!v || 'Password confirm is required',
           v => v === this.password || 'Passwords have to match'
@@ -68,11 +93,13 @@
     },
     methods: {
       send() {
+        if (this.$refs.form.validate()) {
         this.progress = true;
 
         this.$api.register(this.email, this.password, this.first_name, this.last_name);
 
         this.progress = false;
+        }
       }
     }
   }
